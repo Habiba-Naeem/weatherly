@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
+import 'package:weatherlynew/domain/weather/weather.dart';
 
-import '../../domain/weather/weather.dart';
+import '../../domain/weather/weather_service.dart';
 
 class Details extends StatelessWidget {
   final WeatherService ws = WeatherService();
@@ -21,11 +22,14 @@ class Details extends StatelessWidget {
               SizedBox(
                 width: 16,
               ),
-              DetailItem(name: "Humidity", value: "13km/hr"),
+              DetailItem(
+                  name: "Humidity", value: snapshot.data!.humidity.toString()),
               SizedBox(
                 width: 16,
               ),
-              DetailItem(name: "Chance of rain", value: "13km/hr"),
+              DetailItem(
+                  name: "Chance of rain",
+                  value: snapshot.data!.areaName.toString()),
             ],
           );
         });

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
-import 'package:weatherlynew/domain/weather/weather.dart';
+import 'package:weatherlynew/domain/weather/weather_service.dart';
 import '../shared/details.dart';
 
 class TodayWeatherWidget extends StatelessWidget {
@@ -12,15 +12,17 @@ class TodayWeatherWidget extends StatelessWidget {
     return FutureBuilder<Weather>(
         future: ws.queryWeather(),
         builder: (BuildContext context, snapshot) {
-          if (snapshot.data != null) {
+          print(snapshot);
+          if (snapshot.hasData) {
             return Column(
               children: [
                 //Icon(icon: snapshot.data.weatherIcon),
+                Text(snapshot.data!.weatherDescription.toString()
+
+                    //snapshot.data!.cloudiness.toString(),
+                    ),
                 Text(
-                  snapshot.data!.areaName.toString(),
-                ),
-                Text(
-                  snapshot.data!.temperature!.celsius!.toStringAsFixed(1),
+                  snapshot.data!.temperature.toString(),
                   style: TextStyle(fontSize: 60),
                 ),
                 Text(
@@ -30,7 +32,7 @@ class TodayWeatherWidget extends StatelessWidget {
               ],
             );
           } else {
-            return Text("loading");
+            return Text("Loading");
           }
         });
   }

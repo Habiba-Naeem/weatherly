@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weatherlynew/presentation/daily_weather/today_weather_screen.dart';
+import 'package:weatherlynew/presentation/weekly_weather/weekly_report_screen.dart';
 
 void main() {
   print("Wherasdras");
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: TodayWeatherScreen(),
+      home: WeeklyReport() //TodayWeatherScreen(),
     );
   }
 }

@@ -19,11 +19,16 @@ class TodayWeatherScreen extends StatelessWidget {
                 const Text("Today"),
                 TextButton(
                   onPressed: () {},
-                  child: const Text("7 days"),
+                  child: InkWell(
+                    child: const Text("7 days"),
+                    onTap: (){
+                      
+                    },
+                    ),
                 )
               ],
             ),
-            const HourlyUpdateList()
+            //const HourlyUpdateList()
           ],
         ),
       ),

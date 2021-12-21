@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weatherlynew/domain/weather/weather_service.dart';
+import 'package:weather/weather.dart';
 
 class WeeklyList extends StatelessWidget {
   WeeklyList({Key? key}) : super(key: key);
@@ -11,21 +13,29 @@ class WeeklyList extends StatelessWidget {
     'Saturday',
     'Sunday'
   ];
-
+  final WeatherService ws = WeatherService();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: days.length,
-      itemBuilder: (BuildContext context, int) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(days[int]),
-            Text("Rainy"),
-            Text("+25"),
-          ],
-        );
-      },
-    );
+    return FutureBuilder<List<Weather>>(
+        future: ws.queryForecast(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(snapshot.data![index].temperature.toString()),
+                    Text(snapshot.data![index].date.toString()),
+                    Text("+25"),
+                  ],
+                );
+              },
+            );
+          } else {
+            return Text("Loading");
+          }
+        });
   }
 }

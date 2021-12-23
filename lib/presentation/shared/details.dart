@@ -11,7 +11,7 @@ class Details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Weather>(
+    return FutureBuilder<WeatherModel>(
         future: ws.queryWeather(),
         builder: (context, snapshot) {
           return Row(
@@ -29,7 +29,7 @@ class Details extends StatelessWidget {
               ),
               DetailItem(
                   name: "Chance of rain",
-                  value: snapshot.data!.areaName.toString()),
+                  value: snapshot.data!.feelLikeTemp.toString()),
             ],
           );
         });

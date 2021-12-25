@@ -1,21 +1,26 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:weatherlynew/domain/weather/weather.dart';
+import 'package:provider/provider.dart';
 class HourlyUpdateList extends StatelessWidget {
-  const HourlyUpdateList({Key? key}) : super(key: key);
+   HourlyUpdateList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final weather = Provider.of<WeatherModel>(context);
     return ListView.builder(
-        itemCount: 6,
+        itemCount: weather.hourly.length,
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
         itemBuilder: (BuildContext context, int) {
-          return Column(
-            children: const [
-              Text("12:00"),
-              Text("Cloudy"),
-            ],
+          return Expanded(
+            child: Column(
+              children:  [
+                Text(weather.hourly[int].time.toString()),
+                Text(weather.hourly[int].temp.toString()),
+              ],
+            ),
           );
         });
   }

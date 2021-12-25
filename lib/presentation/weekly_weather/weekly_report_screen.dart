@@ -15,9 +15,9 @@ class WeeklyReport extends StatelessWidget {
         body: Column(
           children: [
             const NextDayWeatherWidget(),
-            Expanded(
-              child: WeeklyList(),
-            ),
+            // Expanded(
+            //   child: WeeklyList(),
+            // ),
             InkWell(
               child: Text("Today's"),
               onTap: () {

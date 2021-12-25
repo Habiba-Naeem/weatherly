@@ -7,6 +7,13 @@ import 'package:flutter/material.dart';
 //   humidity,
 // }
 
+class Hourly {
+  final DateTime time;
+  final double temp;
+
+  Hourly({required this.time, required this.temp});
+}
+
 class WeatherModel {
   final String condition;
   final String description;
@@ -14,9 +21,9 @@ class WeatherModel {
   final double feelLikeTemp;
   final double windSpeed;
   final int humidity;
-  final double chanceOfRain;
   final DateTime date;
-  //final Function fromDailyJson;
+  final List<Hourly> hourly;
+  
   WeatherModel({
     required this.condition,
     required this.description,
@@ -25,19 +32,7 @@ class WeatherModel {
     required this.date,
     required this.windSpeed,
     required this.humidity,
-    required this.chanceOfRain,
-    //required this.fromDailyJson,
+    required this.hourly,
+    // required this.chanceOfRain,
   });
-}
-
-fromDailyJson(dynamic data) {
-  return WeatherModel(
-      condition: data['weather'][0]['main'].toString(),
-      description: data['weather']['description'],
-      temp: data['main']['temp'].toDouble(),
-      date: DateTime.fromMillisecondsSinceEpoch(data['dt'] * 1000, isUtc: true),
-      feelLikeTemp: data['main']['feels_like'].toDouble(),
-      chanceOfRain: data['main']['feels_like'].toDouble(),
-      humidity: data['main']['humidity'].toDouble(),
-      windSpeed: data['wind']['speed'].toDouble());
 }
